@@ -1,3 +1,4 @@
+{{--
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -93,3 +94,8 @@
         </div>
     </body>
 </html>
+--}}
+<h1>Hello test</h1>
+<br/>
+<br/>
+<h1><?= isset($greeting) ? "{$greeting}" : 'Hello';?><?= $name; ?></h1>

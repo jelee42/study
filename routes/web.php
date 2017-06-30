@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with('name', 'Jieun');
+});
+
+Route::get('/', function () {
+    return view('welcome')->with(['name'=>'Jieun', 'greeting'=>'좋은 아침',]);
 });
