@@ -139,6 +139,8 @@
                 @endforelse
             </dd>
         </dl>
+        
+        <p>Edit From GitHub</p>
     </div>
     @include('partials.footer')
 @endsection
