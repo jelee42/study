@@ -99,6 +99,9 @@
 <br/>
 <br/>
 <h1><?= isset($greeting) ? "{$greeting}" : 'Hello';?><?= $name; ?></h1>
+<!-- HTML 주석 안에서 {{ $name }}을 출력합니다.-->
+{{-- 블레이드 주석 안에서 {{ $name }}을 출력합니다.--}}
+<h1>{{ $greeting or 'Hello' }} {{ $name or 'User' }}</h1>
 <br/>
 <div>
     <a href="errors.503">link 503</a>
