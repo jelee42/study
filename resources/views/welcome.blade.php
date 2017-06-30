@@ -95,14 +95,50 @@
     </body>
 </html>
 --}}
-<h1>Hello test</h1>
-<br/>
-<br/>
-<h1><?= isset($greeting) ? "{$greeting}" : 'Hello';?><?= $name; ?></h1>
-<!-- HTML 주석 안에서 {{ $name }}을 출력합니다.-->
-{{-- 블레이드 주석 안에서 {{ $name }}을 출력합니다.--}}
-<h1>{{ $greeting or 'Hello' }} {{ $name or 'User' }}</h1>
-<br/>
-<div>
-    <a href="errors.503">link 503</a>
-</div>
+@extends('layouts.master')
+
+@section('style')
+    <style>
+        body {background: grey; color: white;}
+    </style>
+@endsection
+
+@section('script')
+    <script>
+        alert("자식 뷰의 'script' 섹션");
+    </script>
+@endsection
+
+@section('content')
+    <p>자식 뷰의 content 섹션</p>
+    <h4>Hello test</h4>
+    <h4><?= isset($greeting) ? "{$greeting}" : 'Hello';?><?= $name; ?></h4>
+    <!-- HTML 주석 안에서 {{ $name }}을 출력합니다.-->
+    {{-- 블레이드 주석 안에서 {{ $name }}을 출력합니다.--}}
+    <h4>{{ $greeting or 'Hello' }} {{ $name or 'User' }}</h4>
+    <div>
+        <a href="errors.503">link 503</a>
+        @if($itemCount = count($items))
+        <p>{{ $itemCount }}종류의 과일이 있습니다.</p>
+        @else
+        <p>아무것도 없음!</p>
+        @endif
+
+        <ul>
+            @foreach($items as $item)
+            <li>{{  $item }}</li>
+            @endforeach
+        </ul>
+
+        <dl>
+            <dd>과일
+                @forelse($items as $item)
+                <dt>{{ $item }}</dt>
+                @empty
+                <dt> 없음 </dt>
+                @endforelse
+            </dd>
+        </dl>
+    </div>
+    @include('partials.footer')
+@endsection
