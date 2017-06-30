@@ -139,6 +139,8 @@
                 @endforelse
             </dd>
         </dl>
+
+        <a href="https://www.naver.com">네이버로 이동</a>
     </div>
     @include('partials.footer')
 @endsection
