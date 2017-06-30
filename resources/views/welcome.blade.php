@@ -141,6 +141,8 @@
         </dl>
 
         <a href="https://www.naver.com">네이버로 이동</a>
+
+        <p>Edit From GitHub</p>
     </div>
     @include('partials.footer')
 @endsection
