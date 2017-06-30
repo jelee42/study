@@ -99,3 +99,7 @@
 <br/>
 <br/>
 <h1><?= isset($greeting) ? "{$greeting}" : 'Hello';?><?= $name; ?></h1>
+<br/>
+<div>
+    <a href="errors.503">link 503</a>
+</div>
