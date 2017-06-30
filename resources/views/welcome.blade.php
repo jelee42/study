@@ -117,7 +117,7 @@
     {{-- 블레이드 주석 안에서 {{ $name }}을 출력합니다.--}}
     <h4>{{ $greeting or 'Hello' }} {{ $name or 'User' }}</h4>
     <div>
-        <a href="errors.503">link 503</a>
+        <a href="{{URL::route('error503')}}">link 503</a>
         @if($itemCount = count($items))
         <p>{{ $itemCount }}종류의 과일이 있습니다.</p>
         @else
@@ -145,6 +145,23 @@
         <p>Edit From GitHub</p>
         
         <p>Hello! git pull</p>
+
+        <form action="{{url('/login')}}" method="POST" role="form" class="form-auth">
+
+            {!! csrf_field() !!}
+
+            <div class="page-header">
+                <h4>Login</h4>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-default btn-block" href="{{ url('auth/github') }}">
+                    <strong><i class="fa fa-github icon"></i> Login with Github</strong>
+                </a>
+            </div>
+        </form>
+
+        <a href="{{ url('my') }}"><h2>To New Page</h2></a>
     </div>
     @include('partials.footer')
 @endsection

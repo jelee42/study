@@ -8,13 +8,14 @@ class AddNickToAuthorsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 열 추가 마이그레이션
      * @return void
      */
     public function up()
     {
         Schema::table('authors', function (Blueprint $table) {
-            //
+            // authors 테이블에 nick 컬럼을 추가한다.
+            $table->string('nick')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddNickToAuthorsTable extends Migration
     {
         Schema::table('authors', function (Blueprint $table) {
             //
+            $table->dropColumn('nick');
         });
     }
 }

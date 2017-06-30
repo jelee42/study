@@ -15,6 +15,9 @@ class AddAvatorToAuthorsTable extends Migration
     {
         Schema::table('authors', function (Blueprint $table) {
             //
+            $table->string('avator');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,10 @@ class AddAvatorToAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::table('authors', function (Blueprint $table) {
+        Schema::dropIfExists('authors');
+       /* Schema::table('authors', function (Blueprint $table) {
             //
-        });
+            $table->dropColumn('avator');
+        });*/
     }
 }
