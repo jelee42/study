@@ -14,7 +14,19 @@ class ArticlesController extends Controller
     public function index()
     {
         //
-        return __METHOD__ . '은(는) Article 컬렉션을 조회합니다.';
+        // return __METHOD__ . '은(는) Article 컬렉션을 조회합니다.';
+        // 즉시로드
+        // $articles = \App\Article::get(); // N+1쿼리 문제를 야기할 수 있음
+        // N+1쿼리 문제를 해결하는 방법
+        // with()는 인자로 받은 관계를 미리 로드한다.
+        // $articles = \App\Article::with('user')->get();
+
+        // user() 관계가 필요없는 다른 로직 수행
+        // $articles->load('user');
+
+        $articles = \App\Article::latest()->paginate(3);
+
+        return view('articles.index', compact('articles'));
     }
 
     /**

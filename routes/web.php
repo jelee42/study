@@ -36,6 +36,17 @@ Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback')
 Route::resource('articles', 'ArticlesController');
 
 /**
+ * DB::listen()은 이벤트 리스너이다.
+ * 데이터베이스에 이벤트가 발생할 때, 엘로퀀트는 여러 가지 이벤트를 던진다.
+ * 데이터베이스 쿼리를 감시할 수 있는 방법이다.
+ */
+/*DB::listen(function($query){
+    var_dump($query->sql);
+});*/
+
+
+
+/**
  * 라우팅 파일로 사용자 인증 구현하기
  */
 Route::get('auth/login', function () {
