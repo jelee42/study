@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            // rememberToken은 string('remember_token', 100)->nullable()의 의미를 가진 도우미 메서드이다.
             $table->rememberToken();
             $table->timestamps();
         });

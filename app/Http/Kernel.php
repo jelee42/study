@@ -4,6 +4,11 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * Class Kernel
+ * 미들웨어를 만들면 만든 미들웨어 클래스를 이 파일에 등록하고 별칭을 부여한다.
+ * @package App\Http
+ */
 class Kernel extends HttpKernel
 {
     /**

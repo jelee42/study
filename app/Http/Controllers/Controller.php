@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function create(){
+    /*public function create(){
         return view('errors.503');
-    }
+    }*/
 }

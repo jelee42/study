@@ -11,7 +11,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+     * 대량 할당이 가능하다.
      * @var array
      */
     protected $fillable = [
@@ -20,7 +20,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for arrays.
-     *
+     * 조회 쿼리에서 제외할 열을 정의한다.
      * @var array
      */
     protected $hidden = [
