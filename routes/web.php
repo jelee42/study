@@ -114,3 +114,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('mail', function () {
+    $article = App\Article::with('user')->find(1);
+    return Mail::send(
+        'emails.articles.created',
+        compact('article'),
+        function ($message) use ($article) {
+            $message->to('userEmail');
+            $message->subject('새 글이 등록되었습니다. - '.$article->title);
+        }
+    );
+});
