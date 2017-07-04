@@ -44,6 +44,31 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        /**
+         * app()->environment('production')
+         * app()도우미 함수를 인자 없으면 Illuminate\Foundation\Application 객체를 얻을 수 있다.
+         * environment()메서드는 인자로 받은 문자열과 현재 실행 환경을 비교한다. 같으면 true 반환
+         */
+       // dd( app()->environment() ) ; // 'production'
+        //echo app()->environment();
+        //dd( $_ENV ) ;
+        if(app()->environment('production')){
+            /**
+             * if ($exception instanceof ...)
+             * instanceof는 객체 타입을 검사한다. 연산자 앞에 있는 객체가 뒤에 있는 클래스의 인스턴스면 true를 반환
+             *
+             * return response(view('errors.notice', [...]), 404);
+             * view()도우미 함수는 HTTP응답 코드를 쓸 수 없어서
+             * response(string $content = '', int $status = 200, array $headers = []) 도우미 함수를 중첩하여 사용했다.
+             */
+
+            if($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException){
+                return response(view('errors.notice', [
+                    'title' => '찾을 수 없습니다.',
+                    'description' => '죄송합니다! 요청하신 페이지가 없습니다.'
+                ]), 404);
+            }
+        }
         return parent::render($request, $exception);
     }
 
