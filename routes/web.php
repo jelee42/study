@@ -35,6 +35,7 @@ Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback')
 
 Route::resource('articles', 'ArticlesController');
 
+
 /**
  * DB::listen()은 이벤트 리스너이다.
  * 데이터베이스에 이벤트가 발생할 때, 엘로퀀트는 여러 가지 이벤트를 던진다.
@@ -101,6 +102,14 @@ Route::get('auth/logout', function () {
 });
 // routes/web.php
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

@@ -44,7 +44,7 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(\App\Http\Requests\ArticleRequest $request)
@@ -60,7 +60,7 @@ class ArticlesController extends Controller
          * 유효성 검사 공식 문서
          * http://laravel.com/docs/vaildation / http://laravel.kr/docs/vaildation
          */
-        $rules=[
+        $rules = [
             'title' => ['required'],
             'content' => ['required', 'min:10'],
         ];
@@ -115,7 +115,7 @@ class ArticlesController extends Controller
         // $this->validate($request, $rules, $message);
         $article = \App\User::find(1)->articles()->create($request->all());
 
-        if(! $article){
+        if (!$article) {
             /**
              * 인자로 받은 키-값 쌍을 세션에 저장한다.
              * 사용자에게 피드백을 제공하기 위해 사용한다. <-플래시 메시지
@@ -123,6 +123,18 @@ class ArticlesController extends Controller
             return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
         }
 
+        // var_dump('이벤트를 던집니다.');
+        /**
+         * event() : 이벤트를 방출(fire)하는 함수이다.
+         * 첫 번째 인자 : 이벤트 이름
+         * 두 번째 인자 : 이벤트 데이터
+         */
+        // event('article.created', [$article]);
+        // 이벤트 채널이 생성되러 이벤트 던지는 방식 수정
+        // event(new \App\Events\ArticleCreated($article));
+        // var_dump('이벤트를 던졌습니다.');
+
+        event(new \App\Events\ArticlesEvent($article));
         return redirect(route('articles.index'))
             ->with('flash_message', '작성하신 글이 저장되었습니다.');
     }
@@ -130,32 +142,32 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 조회합니다. : '.$id;
+        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 조회합니다. : ' . $id;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 수정하기 위한 폼을 담은 뷰를 반환합니다. : ' .$id;
+        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 수정하기 위한 폼을 담은 뷰를 반환합니다. : ' . $id;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -167,12 +179,12 @@ class ArticlesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 삭제합니다. : ' .$id;
+        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 삭제합니다. : ' . $id;
     }
 }

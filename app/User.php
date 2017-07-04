@@ -27,6 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = [
+        'last_login'
+    ];
     /**
      * User에서 바라본 Article 관계 정의
      * User모델은 여러 개의 Article을 가지고 있다.
