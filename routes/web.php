@@ -117,12 +117,27 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('mail', function () {
     $article = App\Article::with('user')->find(1);
+    // 심화 : 참조, 파일 첨부
     return Mail::send(
         'emails.articles.created',
         compact('article'),
         function ($message) use ($article) {
-            $message->to('userEmail');
-            $message->subject('새 글이 등록되었습니다. - '.$article->title);
+            $message->from('jlel0002@lje.pub', 'TEST');
+            $message->to(['je94451@naver.com', 'jlel0002@gmail.com']);
+            $message->subject('[MAILGUN] 새 글이 등록되었습니다. - '.$article->title);
+            $message->cc('text@lje.pub');
+            $message->attach(storage_path('last_date.png'));
         }
     );
+
+    // 텍스트 메일
+    /*return Mail::send(
+        ['text' => 'emails.articles.created-text'],
+        compact('article'),
+        function ($message) use ($article) {
+            $message->to('je94451@naver.com');
+            $message->subject('[TEXT] 새 글이 등록 되었습니다. - '.$article->title);
+        }
+    );
+    */
 });
