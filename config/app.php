@@ -181,7 +181,6 @@ return [
          * Social login Provider
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
-
     ],
 
     /*
